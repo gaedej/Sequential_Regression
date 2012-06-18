@@ -10,6 +10,7 @@ for(i in y){
 #   print(p)
   counter = 1
   for(i in x){
+    if(counter < length(x)-3){
     # print("###########")
     # print(counter)
     q <- c(x[counter], x[counter+1], x[counter+2])
@@ -20,6 +21,7 @@ for(i in y){
     print(cor_out)
 
     # print("###########")
+  }
     counter <- counter+1
   }
   counter2 <- counter2+1
