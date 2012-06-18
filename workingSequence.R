@@ -15,7 +15,10 @@ for(i in y){
     q <- c(x[counter], x[counter+1], x[counter+2])
     print(p)
     print(q)
-    print(cor(p,q))
+    cor_out <- cor(p,q)
+    if(cor_out)
+    print(cor_out)
+
     # print("###########")
     counter <- counter+1
   }
