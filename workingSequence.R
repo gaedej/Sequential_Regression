@@ -10,7 +10,7 @@ for(i in length(y)){
   p <- c(y[counter2], y[counter2+1], y[counter2+2])
   if(counter < length(y)-3){
     
-   for(i in x){
+   for(i2 in x){
     if(counter < length(x)-3){
     q <- c(x[counter], x[counter+1], x[counter+2])
 #     print(p)
