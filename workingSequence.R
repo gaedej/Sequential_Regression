@@ -2,11 +2,11 @@
 x <- c(8:15,c(50:1))
 y <- c(7,4,8,4,1,11,c(1:50))
 z <- c(y[1],y[2],y[3])
-
+boo <- c(1:53)
 counter = 1
 counter2 = 1
 my_correlation = NULL
-for(i in length(y)){
+for(i in boo){
   p <- c(y[counter2], y[counter2+1], y[counter2+2])
   if(counter < length(y)-3){
     
@@ -26,6 +26,7 @@ for(i in length(y)){
   }
   counter2 <- counter2+1
   print(counter2)
+  print(boo)
   
 }
 plot(my_correlation, type="l", col="green")
