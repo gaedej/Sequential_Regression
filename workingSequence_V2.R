@@ -9,6 +9,7 @@ hoo <- c(1:length(x))
 corVecLeng = 3
 counter = 1
 counter2 = 1
+Correlation_DataFrame <- data.frame()
 
 my_correlation = NULL
 
@@ -25,8 +26,9 @@ for(i1 in head(boo, -corVecLeng)){
 #      cat(q)
 #      cat("*")
      boom <- cor(p,q)
-     cat(boom)
+     cat(boom,"  ", p,"  ", q)
      cat("   ")
+     # Correlation_DataFrame <- cbind(Correlation_DataFrame, p,boom)
   }
    # cat("**********")
   }
