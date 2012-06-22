@@ -31,4 +31,7 @@ for(i1 in head(boo, -corVecLeng)){
   }
 Correlation_DataFrame
 plot(Correlation_DataFrame[,7], type = "l")
+barplot(Correlation_DataFrame[,7])
+hist(Correlation_DataFrame[,7])
+
   
