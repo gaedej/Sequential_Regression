@@ -9,8 +9,7 @@ hoo <- c(1:length(x))
 corVecLeng = 3
 counter = 1
 counter2 = 1
-Correlation_DataFrame <- data.frame()
-
+Correlation_DataFrame <- rbind(0,1:7)
 my_correlation = NULL
 
 # Start Nested Loops
@@ -20,16 +19,12 @@ for(i1 in head(boo, -corVecLeng)){
   cat("   " )
    for(i2 in head(hoo, -corVecLeng)){ 
      q <- c(y[i2], y[i2+1], y[i2+2])
-#      cat("*")
-#      cat(p)
-#      cat("*")
-#      cat(q)
-#      cat("*")
      boom <- cor(p,q)
      cat(boom,"  ", p,"  ", q)
      cat("   ")
-     # Correlation_DataFrame <- cbind(Correlation_DataFrame, p,boom)
-  }
+     tempRow <- c(p,q,boom)
+     Correlation_DataFrame <- rbind(Correlation_DataFrame, tempRow)
+    }
    # cat("**********")
   }
 # plot(boom, type = "l")
