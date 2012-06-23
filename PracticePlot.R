@@ -24,6 +24,7 @@ pushh5 <- c(y1c1,y1c2)
 lines(pulll,pushh, col="red")
 lines(pulll4, pushh4, col="red")
 lines(pulll5, pushh5, col="red")
+title(Correlation_DataFrame[i,"CorValue"])
 # polygon(c(pulll,pulll4,pulll5), c(pushh,pushh4,pushh5), col="orange", border="red")
 }
 
