@@ -11,13 +11,14 @@ counter = 1
 counter2 = 1
 # Correlation_DataFrame <- rbind(0,1:7)
 Correlation_DataFrame = NULL
-Correlation_DataFrame
+# Correlation_DataFrame <- colnames("Xnum1", "Xnum2","Y1","Y2","Y3","Y1A","Y2A","Y2A","CorValue")
+# 
 my_correlation = NULL
 
 # Start Nested Loops
 for(i1 in head(boo, -corVecLeng)){
   p <- c(x[i1], x[i1+1], x[i1+2])
-  # cat(p)
+  # cat(counter)
   cat("   " )
    for(i2 in head(hoo, -corVecLeng)){ 
      q <- c(y[i2], y[i2+1], y[i2+2])
@@ -25,15 +26,18 @@ for(i1 in head(boo, -corVecLeng)){
      # cat(boom,"  ", p,"  ", q)
      # cat("   ")
      if(abs(boom) > .8){
-        tempRow <- c(p,q,boom)
+        tempRow <- c(counter, counter2,p,q,boom)
         Correlation_DataFrame <- rbind(Correlation_DataFrame, tempRow)
         }
+     counter2 <- counter2 + 1
     }
-   # cat("**********")
+  counter2 = 1 
+  counter <- counter + 1
   }
+colnames(Correlation_DataFrame) <- c("Xnum1", "Xnum2","Y1","Y2","Y3","Y1A","Y2A","Y3A","CorValue")
 Correlation_DataFrame
-plot(Correlation_DataFrame[,7], type = "l")
-barplot(Correlation_DataFrame[,7])
-hist(Correlation_DataFrame[,7])
+plot(Correlation_DataFrame[,"CorValue"], type = "l")
+barplot(Correlation_DataFrame[,"CorValue"])
+hist(Correlation_DataFrame[,"CorValue"])
 
   
