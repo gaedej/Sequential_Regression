@@ -22,10 +22,12 @@ for(i1 in head(boo, -corVecLeng)){
    for(i2 in head(hoo, -corVecLeng)){ 
      q <- c(y[i2], y[i2+1], y[i2+2])
      boom <- cor(p,q)
-     cat(boom,"  ", p,"  ", q)
-     cat("   ")
-     tempRow <- c(p,q,boom)
-     Correlation_DataFrame <- rbind(Correlation_DataFrame, tempRow)
+     # cat(boom,"  ", p,"  ", q)
+     # cat("   ")
+     if(abs(boom) > .8){
+        tempRow <- c(p,q,boom)
+        Correlation_DataFrame <- rbind(Correlation_DataFrame, tempRow)
+        }
     }
    # cat("**********")
   }
