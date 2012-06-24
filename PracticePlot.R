@@ -1,3 +1,5 @@
+library(animation)
+saveHTML(
 for(i in c(1:nrow(Correlation_DataFrame))){
 plot(x, type="b")
 points(y)
@@ -27,5 +29,5 @@ lines(pulll5, pushh5, col="red")
 title(Correlation_DataFrame[i,"CorValue"])
 # polygon(c(pulll,pulll4,pulll5), c(pushh,pushh4,pushh5), col="orange", border="red")
 }
-
+, img.name = "Correlation_Sequence")
 
