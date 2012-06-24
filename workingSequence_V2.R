@@ -13,9 +13,7 @@ hoo <- c(1:length(x))
 corVecLeng = 5
 counter = 1
 counter2 = 1
-# Correlation_DataFrame <- rbind(0,1:7)
 Correlation_DataFrame = NULL
-# Correlation_DataFrame <- colnames("Xnum1", "Xnum2","Y1","Y2","Y3","Y1A","Y2A","Y2A","CorValue")
 # 
 my_correlation = NULL
 

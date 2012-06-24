@@ -18,6 +18,11 @@ y1e1 <- Correlation_DataFrame[i,"Y5"]
 y1e2 <- Correlation_DataFrame[i,"Y5A"]
 bb <- as.vector(xAxisA[i])
 cc <- as.vector(xAxisB[i])
+# Linear Regression
+took <- c(y1,y1b1,y1c1,y1d1,y1e1)
+pook <- c(y1a,y1b2,y1c2,y1d2,y1e2)
+# lm(too ~ pook)
+abline(lm(took ~ pook))
 #### P0
 pulll <- c(bb,cc)
 pushh <- c(y1,y1a)
@@ -38,7 +43,7 @@ lines(pulll4, pushh4, col="red")
 lines(pulll5, pushh5, col="red")
 lines(pulll6, pushh6, col="red")
 lines(pulll7, pushh7, col="red")
-title(Correlation_DataFrame[i,"CorValue"])
+title(main = Correlation_DataFrame[i,"CorValue"])
 polygon(c(pulll,rev(pulll4)), c(pushh,rev(pushh4)), col="orange", border="red")
 polygon(c(pulll4,rev(pulll5)), c(pushh4,rev(pushh5)), col="blue", border="red")
 polygon(c(pulll5,rev(pulll6)), c(pushh5,rev(pushh6)), col="orange", border="red")
