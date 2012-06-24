@@ -4,8 +4,8 @@
 # x <- c(8:15,c(5:1))
 # y <- c(7,4,8,4,1,11,4,9,c(1:5))
 # Stock Data Vectors
-x <- LNT1yrClose[,1]
-y <- DE1yrClose[,1]
+y <- LNT1QClose[,1]
+x <- DE1QClose[,1]
 z <- c(y[1],y[2],y[3])
 boo <- c(1:length(x))
 hoo <- c(1:length(x))
@@ -29,7 +29,7 @@ for(i1 in head(boo, -corVecLeng)){
      boom <- cor(p,q)
      # cat(boom,"  ", p,"  ", q)
      # cat("   ")
-     if(abs(boom) > .8){
+     if(abs(boom) > .98){
         tempRow <- c(counter, counter2,p,q,boom)
         Correlation_DataFrame <- rbind(Correlation_DataFrame, tempRow)
         }

@@ -1,7 +1,7 @@
 library(animation)
 saveHTML(
 for(i in c(1:nrow(Correlation_DataFrame))){
-plot(x, type="b")
+plot(x, type="b", ylim=c(20,100))
 points(y)
 lines(y)
 xAxisA <- Correlation_DataFrame[,"Xnum1"]
@@ -30,5 +30,5 @@ title(Correlation_DataFrame[i,"CorValue"])
 polygon(c(pulll,rev(pulll4)), c(pushh,rev(pushh4)), col="orange", border="red")
 polygon(c(pulll4,rev(pulll5)), c(pushh4,rev(pushh5)), col="blue", border="red")
 }
-, img.name = "Correlation_Sequence")
+, img.name = "Correlation_Sequence", ani.height = 600, ani.width = 1000)
 
