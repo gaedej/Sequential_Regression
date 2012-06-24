@@ -27,7 +27,8 @@ lines(pulll,pushh, col="red")
 lines(pulll4, pushh4, col="red")
 lines(pulll5, pushh5, col="red")
 title(Correlation_DataFrame[i,"CorValue"])
-# polygon(c(pulll,pulll4,pulll5), c(pushh,pushh4,pushh5), col="orange", border="red")
+polygon(c(pulll,rev(pulll4)), c(pushh,rev(pushh4)), col="orange", border="red")
+polygon(c(pulll4,rev(pulll5)), c(pushh4,rev(pushh5)), col="blue", border="red")
 }
 , img.name = "Correlation_Sequence")
 
