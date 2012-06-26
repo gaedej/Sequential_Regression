@@ -4,6 +4,10 @@ for(i in c(1:nrow(Correlation_DataFrame))){
 plot(x, type="b", ylim=c(20,100))
 points(y)
 lines(y)
+rect(20,85,30,100)
+text(24, 98, "Correlation Value" )
+text(24, 96, Correlation_DataFrame[i,"CorValue"] )
+
 xAxisA <- Correlation_DataFrame[,"Xnum1"]
 xAxisB <- Correlation_DataFrame[,"Xnum2"]
 y1 <- Correlation_DataFrame[i,"Y1"]
@@ -21,8 +25,11 @@ cc <- as.vector(xAxisB[i])
 # Linear Regression
 took <- c(y1,y1b1,y1c1,y1d1,y1e1)
 pook <- c(y1a,y1b2,y1c2,y1d2,y1e2)
-# lm(too ~ pook)
-abline(lm(took ~ pook))
+# took2 <- took/2
+# pook2 <- pook/2
+kook <- lm(took ~ pook)
+abline(kook)
+# text(24, 94, kook )
 #### P0
 pulll <- c(bb,cc)
 pushh <- c(y1,y1a)
@@ -38,12 +45,13 @@ pushh6 <- c(y1d1,y1d2)
 #### P4
 pulll7 <- c(bb+4,cc+4)
 pushh7 <- c(y1e1,y1e2)
-lines(pulll,pushh, col="red")
-lines(pulll4, pushh4, col="red")
-lines(pulll5, pushh5, col="red")
-lines(pulll6, pushh6, col="red")
-lines(pulll7, pushh7, col="red")
-title(main = Correlation_DataFrame[i,"CorValue"])
+# Lines are probably redundant. Commenting out for the time being.
+# lines(pulll,pushh, col="red")
+# lines(pulll4, pushh4, col="red")
+# lines(pulll5, pushh5, col="red")
+# lines(pulll6, pushh6, col="red")
+# lines(pulll7, pushh7, col="red")
+title(main = "Leading Indicators for DE and LNT")
 polygon(c(pulll,rev(pulll4)), c(pushh,rev(pushh4)), col="orange", border="red")
 polygon(c(pulll4,rev(pulll5)), c(pushh4,rev(pushh5)), col="blue", border="red")
 polygon(c(pulll5,rev(pulll6)), c(pushh5,rev(pushh6)), col="orange", border="red")
