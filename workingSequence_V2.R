@@ -1,3 +1,4 @@
+library(ggplot2)
 # Global Comments More
 # Set Variables
 # Test Data Vectors
@@ -41,5 +42,20 @@ Correlation_DataFrame
 plot(Correlation_DataFrame[,"CorValue"], type = "l")
 barplot(Correlation_DataFrame[,"CorValue"])
 hist(Correlation_DataFrame[,"CorValue"])
+
+ggplot() + 
+layer(
+    data = Correlation_DataFrame, mapping = aes(x = CorValue, y = Xnum1),
+    geom = "point", stat = "identity" , color = "blue")
+# layer(
+#     data = testoutput, mapping = aes(x = sda, y = sdb),
+#     geom = "smooth", stat = "smooth", method = lm, col = "blue") +
+# layer(
+#     data = testoutput, mapping = aes(x = sdb, y = sdc),
+#     geom = "point", stat = "identity", col = "red") + 
+# layer(
+#     data = testoutput, mapping = aes(x = sdb, y = sdc),
+#     geom = "smooth", stat = "smooth", method = lm, col = "red")
+
 
   
