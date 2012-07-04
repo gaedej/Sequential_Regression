@@ -14,7 +14,7 @@ hoo <- c(1:length(x))
 corVecLeng = 5
 counter = 1
 counter2 = 1
-Correlation_DataFrame = NULL
+Correlation_DataFrame = as.data.frame(NULL)
 # 
 my_correlation = NULL
 
@@ -45,11 +45,11 @@ hist(Correlation_DataFrame[,"CorValue"])
 
 ggplot() + 
 layer(
-    data = Correlation_DataFrame, mapping = aes(x = CorValue, y = Xnum1),
-    geom = "point", stat = "identity" , color = "blue")
-# layer(
-#     data = testoutput, mapping = aes(x = sda, y = sdb),
-#     geom = "smooth", stat = "smooth", method = lm, col = "blue") +
+    data = Correlation_DataFrame, mapping = aes(x = Xnum1, y = Y1 ),
+    geom = "line", stat = "identity" , color = "blue") +
+layer(
+    data = Correlation_DataFrame, mapping = aes(x = Xnum2, y = Y2),
+    geom = "line", stat = "identity", method = lm, col = "red") 
 # layer(
 #     data = testoutput, mapping = aes(x = sdb, y = sdc),
 #     geom = "point", stat = "identity", col = "red") + 
