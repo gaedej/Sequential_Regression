@@ -1,4 +1,6 @@
+library(grid)
 library(animation)
+library(ggplot2)
 saveHTML(
 for(i in c(1:nrow(Correlation_DataFrame))){
 plot(x, type="b", ylim=c(20,100))
@@ -60,6 +62,12 @@ polygon(c(pulll6,rev(pulll7)), c(pushh6,rev(pushh7)), col="blue", border="red")
 , img.name = "Correlation_Sequence", ani.height = 600, ani.width = 1000)
 
 ###############  New ggplot2 section #####
+# vp <- viewport(width = 0.4, height = 0.4, x = 1,
+#               y = unit(0.7, "lines"), just = c("right", "bottom"))
+
+chic <- c(1:10)
+vp <- viewport(width = .8, height = .8, just = 'centre', name = 'toy')
+mainp <-
 ggplot() + 
 layer(
     data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = x ),
@@ -67,10 +75,16 @@ layer(
 layer(
     data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
     geom = "line", stat = "identity", method = lm, col = "red") +
+# layer(vp)+
 geom_line(aes(x=pulll,y=pushh)) + 
 geom_line(aes(x=pulll4,y=pushh4)) +
 geom_line(aes(x=pulll5,y=pushh5)) +
 geom_line(aes(x=pulll6,y=pushh6)) +
 geom_line(aes(x=pulll7,y=pushh7)) 
 
+grid.newpage(recording = TRUE)
+pushViewport(toy.vp)
 
+subplot <- mainp
+print(mainp)
+print(chic, vp)
