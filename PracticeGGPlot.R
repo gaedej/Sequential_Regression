@@ -81,6 +81,26 @@ geom_line(aes(x=pulll5,y=pushh5)) +
 geom_line(aes(x=pulll6,y=pushh6)) +
 geom_line(aes(x=pulll7,y=pushh7)) 
 
+########## Main Focus Data Prep.
+xDistiledx <- c(pulll[1], pulll4[1], pulll5[1], pulll6[1], pulll7[1])
+xDistiledy <- c(pulll[2], pulll4[2], pulll5[2], pulll6[2],pulll7[2])
+xDistiledxScat <- c(1,pulll[1], 2,  pulll4[1], 3 , pulll5[1],4 , pulll6[1], 5 ,pulll7[1])
+xDistiledyScat <- c(1, pulll[2], 2,  pulll4[2], 3, pulll5[2],4,  pulll6[2], 5, pulll7[2])
+
+
+yDistiled <- c(pushh, pushh4, pushh5, pushh6, pushh7)
+# xDistiled <- c(1:4)
+# yDistiled <- c(5:2)
+
+mainFocus <- ggplot() +
+  layer(
+    mapping = aes(x = c(1:5) , y = xDistiledx), geom = "line", stat = "identity" , color = "blue"
+    )  + 
+  layer(
+      mapping = aes(x = c(1:5), y= xDistiledy) , geom = "line", stat = "identity" , color = "red"
+      ) # +
+  # layer(aes(x=as.data.frame(xDistiledx), y=as.data.frame(xDistiledy)) + geom_smooth(method ="lm", se = FALSE))
+
 mainpSmall <- qplot(x=c(1:100), colour="lightblue",binwidth=0.8)
 subplot3 <- mainpSmall  + geom_line(colour = I("grey"),
                          size = 0.8) 
@@ -93,7 +113,8 @@ theme_set(theme_bw())
 theme_white()
 
 full_combo <- function() {
-  print(mainp)
+  # print(mainp)
+  print(mainFocus)
   theme_set(theme_bw(base_size = 8))
   theme_white()
   print(mainp, vp = vp)
@@ -101,3 +122,4 @@ full_combo <- function() {
 }
 
 full_combo()
+
