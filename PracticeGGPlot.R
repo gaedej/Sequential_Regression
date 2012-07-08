@@ -1,7 +1,9 @@
-library(grid)
-library(animation)
-library(ggplot2)
-saveHTML(
+library("grid")
+library("scales")
+library("animation")
+library("ggplot2")
+########### Next Line Starts HTML Save Function #####
+# saveHTML(
 for(i in c(1:nrow(Correlation_DataFrame))){
 plot(x, type="b", ylim=c(20,100))
 points(y)
@@ -59,14 +61,12 @@ polygon(c(pulll4,rev(pulll5)), c(pushh4,rev(pushh5)), col="blue", border="red")
 polygon(c(pulll5,rev(pulll6)), c(pushh5,rev(pushh6)), col="orange", border="red")
 polygon(c(pulll6,rev(pulll7)), c(pushh6,rev(pushh7)), col="blue", border="red")
 }
-, img.name = "Correlation_Sequence", ani.height = 600, ani.width = 1000)
-
+# , img.name = "Correlation_Sequence", ani.height = 600, ani.width = 1000)
+########### Previous Line Ends HTML Save Function ####
 ###############  New ggplot2 section #####
-# vp <- viewport(width = 0.4, height = 0.4, x = 1,
-#               y = unit(0.7, "lines"), just = c("right", "bottom"))
+vp <- viewport(width = 0.4, height = 0.4, x = 1,
+    y = unit(0.7, "lines"), just = c("right","bottom"))
 
-chic <- c(1:10)
-vp <- viewport(width = .8, height = .8, just = 'centre', name = 'toy')
 mainp <-
 ggplot() + 
 layer(
@@ -74,17 +74,31 @@ layer(
     geom = "line", stat = "identity" , color = "blue") +
 layer(
     data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
-    geom = "line", stat = "identity", method = lm, col = "red") +
+    geom = "line", stat = "identity", method = lm, col = "red") # +
 # layer(vp)+
-geom_line(aes(x=pulll,y=pushh)) + 
-geom_line(aes(x=pulll4,y=pushh4)) +
-geom_line(aes(x=pulll5,y=pushh5)) +
-geom_line(aes(x=pulll6,y=pushh6)) +
-geom_line(aes(x=pulll7,y=pushh7)) 
+# geom_line(aes(x=pulll,y=pushh)) + 
+# geom_line(aes(x=pulll4,y=pushh4)) +
+# geom_line(aes(x=pulll5,y=pushh5)) +
+# geom_line(aes(x=pulll6,y=pushh6)) +
+# geom_line(aes(x=pulll7,y=pushh7)) 
 
-grid.newpage(recording = TRUE)
-pushViewport(toy.vp)
+mainpSmall <- qplot(x=c(1:100), colour="lightblue",binwidth=0.8)
+subplot3 <- mainpSmall #  + geom_line(colour = I("grey"),
+                       #      size = 0.8) 
 
-subplot <- mainp
-print(mainp)
-print(chic, vp)
+theme_white <- function() {
+  theme_update(panel.background = theme_blank(),
+               panel.grid.major = theme_blank())
+}
+theme_set(theme_bw())
+theme_white()
+
+full_combo <- function() {
+  print(mainp)
+  theme_set(theme_bw(base_size = 8))
+  theme_white()
+  print(mainp, vp = vp)
+  theme_set(theme_bw())
+}
+
+full_combo()
