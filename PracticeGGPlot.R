@@ -74,17 +74,16 @@ layer(
     geom = "line", stat = "identity" , color = "blue") +
 layer(
     data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
-    geom = "line", stat = "identity", method = lm, col = "red") # +
-# layer(vp)+
-# geom_line(aes(x=pulll,y=pushh)) + 
-# geom_line(aes(x=pulll4,y=pushh4)) +
-# geom_line(aes(x=pulll5,y=pushh5)) +
-# geom_line(aes(x=pulll6,y=pushh6)) +
-# geom_line(aes(x=pulll7,y=pushh7)) 
+    geom = "line", stat = "identity", method = lm, col = "red")  +
+geom_line(aes(x=pulll,y=pushh)) + 
+geom_line(aes(x=pulll4,y=pushh4)) +
+geom_line(aes(x=pulll5,y=pushh5)) +
+geom_line(aes(x=pulll6,y=pushh6)) +
+geom_line(aes(x=pulll7,y=pushh7)) 
 
 mainpSmall <- qplot(x=c(1:100), colour="lightblue",binwidth=0.8)
-subplot3 <- mainpSmall #  + geom_line(colour = I("grey"),
-                       #      size = 0.8) 
+subplot3 <- mainpSmall  + geom_line(colour = I("grey"),
+                         size = 0.8) 
 
 theme_white <- function() {
   theme_update(panel.background = theme_blank(),
