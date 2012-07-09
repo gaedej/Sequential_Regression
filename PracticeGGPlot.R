@@ -74,7 +74,8 @@ layer(
     geom = "line", stat = "identity" , color = "blue") +
 layer(
     data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
-    geom = "line", stat = "identity", method = lm, col = "red")  +
+    geom = "line", stat = "identity", col = "red")  +
+    # geom_point(Correlation_DataFrame, mapping = aes(x = c(1:54), y = x), size = 2, shape=0 +
 geom_line(aes(x=pulll,y=pushh)) + 
 geom_line(aes(x=pulll4,y=pushh4)) +
 geom_line(aes(x=pulll5,y=pushh5)) +
@@ -82,24 +83,47 @@ geom_line(aes(x=pulll6,y=pushh6)) +
 geom_line(aes(x=pulll7,y=pushh7)) 
 
 ########## Main Focus Data Prep.
-xDistiledx <- c(pulll[1], pulll4[1], pulll5[1], pulll6[1], pulll7[1])
-xDistiledy <- c(pulll[2], pulll4[2], pulll5[2], pulll6[2],pulll7[2])
-xDistiledxScat <- c(1,pulll[1], 2,  pulll4[1], 3 , pulll5[1],4 , pulll6[1], 5 ,pulll7[1])
-xDistiledyScat <- c(1, pulll[2], 2,  pulll4[2], 3, pulll5[2],4,  pulll6[2], 5, pulll7[2])
-
-
+# xDistiledx <- c(pulll[1], pulll4[1], pulll5[1], pulll6[1], pulll7[1])
+# xDistiledy <- c(pulll[2], pulll4[2], pulll5[2], pulll6[2],pulll7[2])
+xDistiledx <- c(pushh[1], pushh4[1], pushh5[1], pushh6[1], pushh7[1])
+xDistiledy <- c(pushh[2], pushh4[2], pushh5[2], pushh6[2],pushh7[2])
+xDistiledxScat <- c(1,pushh[1], 2,  pushh4[1], 3 , pushh5[1],4 , pushh6[1], 5 ,pushh7[1])
+xDistiledyScat <- c(1, pushh[2], 2,  pushh4[2], 3, pushh5[2],4,  pushh6[2], 5, pushh7[2])
+DistCombo <- as.data.frame(c(xDistiledx, xDistiledy))
+# colnames(DistCombo) <- c("scatX", "scatY")
+DistCombo1 = as.data.frame(matrix(nrow = 5, ncol = 2))
+DistCombo1[1] <- as.data.frame(c(1:5))
+DistCombo1[2] <- as.data.frame(xDistiledx)
+DistCombo2 = as.data.frame(matrix(nrow = 5, ncol = 2))
+DistCombo2[1] <- as.data.frame(c(1:5))
+DistCombo2[2] <- as.data.frame(xDistiledy)
+DistCombo3 <- rbind(DistCombo1,DistCombo2)
+c <- ggplot(DistCombo3 , aes(V1, V2))
 yDistiled <- c(pushh, pushh4, pushh5, pushh6, pushh7)
 # xDistiled <- c(1:4)
 # yDistiled <- c(5:2)
-
+############## Snippet from Book ############  c + stat_smooth(method = "lm") + geom_point()
 mainFocus <- ggplot() +
   layer(
     mapping = aes(x = c(1:5) , y = xDistiledx), geom = "line", stat = "identity" , color = "blue"
     )  + 
   layer(
-      mapping = aes(x = c(1:5), y= xDistiledy) , geom = "line", stat = "identity" , color = "red"
-      ) # +
-  # layer(aes(x=as.data.frame(xDistiledx), y=as.data.frame(xDistiledy)) + geom_smooth(method ="lm", se = FALSE))
+    mapping = aes(x = c(1:5) , y = xDistiledx), geom = "point", stat = "identity" , color = "black"
+      ) + 
+  layer(
+      mapping = aes(x = c(1:5), y= xDistiledy) , geom = "line" , stat = "identity" , color = "red"
+      ) +
+    layer(
+      mapping = aes(x = c(1:5), y= xDistiledy) , geom = "point" , stat = "identity" , color = "black"
+        )   # +
+# Getting Closer      c()
+#     layer(
+#     stat_smooth(method="lm")
+#       )
+mainFocus + stat_smooth()
+Regres <- ggplot(DistCombo3, aes(x=V1, y=V2)) +
+  geom_point(shape=1) +    # Use hollow circles
+  geom_smooth(method=lm)
 
 mainpSmall <- qplot(x=c(1:100), colour="lightblue",binwidth=0.8)
 subplot3 <- mainpSmall  + geom_line(colour = I("grey"),
@@ -115,6 +139,7 @@ theme_white()
 full_combo <- function() {
   # print(mainp)
   print(mainFocus)
+  print(Regres)
   theme_set(theme_bw(base_size = 8))
   theme_white()
   print(mainp, vp = vp)
