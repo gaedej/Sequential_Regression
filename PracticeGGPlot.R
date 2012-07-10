@@ -2,6 +2,10 @@ library("grid")
 library("scales")
 library("animation")
 library("ggplot2")
+##### Extract Data From Sequence.conf  ###############
+Sequence <- read.table("~/R/Sequential_Regression/Sequence.conf", quote="\"")
+Iterations <- Sequence$V1
+####### End Veriable Assignment  ###########
 ########### Next Line Starts HTML Save Function #####
 # saveHTML(
 for(i in c(1:nrow(Correlation_DataFrame))){
@@ -80,7 +84,8 @@ geom_line(aes(x=pulll,y=pushh)) +
 geom_line(aes(x=pulll4,y=pushh4)) +
 geom_line(aes(x=pulll5,y=pushh5)) +
 geom_line(aes(x=pulll6,y=pushh6)) +
-geom_line(aes(x=pulll7,y=pushh7)) 
+geom_line(aes(x=pulll7,y=pushh7)) +
+geom_line(aes(x=pulll8,y=pushh8))
 
 ########## Main Focus Data Prep.
 # xDistiledx <- c(pulll[1], pulll4[1], pulll5[1], pulll6[1], pulll7[1])

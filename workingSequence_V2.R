@@ -1,4 +1,8 @@
 library(ggplot2)
+##### Extract Data From Sequence.conf  ###############
+Sequence <- read.table("~/R/Sequential_Regression/Sequence.conf", quote="\"")
+Iterations <- Sequence$V1
+####### End Veriable Assignment  ###########
 # Global Comments More
 # Set Variables
 # Test Data Vectors
@@ -20,11 +24,22 @@ my_correlation = NULL
 
 # Start Nested Loops
 for(i1 in head(boo, -corVecLeng)){
-  p <- c(x[i1], x[i1+1], x[i1+2], x[i1+3], x[i1+4])
+  ######## Convert this line into a loop using Iterations
+  p<- c(x[i1])
+  for(itt in 1:Iterations) {
+    p <- c(p,x[i1+itt])
+  }
+  # Old Code ## p <- c(x[i1], x[i1+1], x[i1+2], x[i1+3], x[i1+4])
+  
   # cat(counter)
   cat("   " )
    for(i2 in head(hoo, -corVecLeng)){ 
-     q <- c(y[i2], y[i2+1], y[i2+2], y[i2+3], y[i2+4])
+     ######## Convert this line into a loop using Iterations
+     q<- c(y[i1])
+     for(itt2 in 1:Iterations) {
+       q <- c(q,y[i1+itt2])
+     }
+     # Old Code ####  q <- c(y[i2], y[i2+1], y[i2+2], y[i2+3], y[i2+4])
      boom <- cor(p,q)
      # cat(boom,"  ", p,"  ", q)
      # cat("   ")
@@ -43,13 +58,13 @@ plot(Correlation_DataFrame[,"CorValue"], type = "l")
 barplot(Correlation_DataFrame[,"CorValue"])
 hist(Correlation_DataFrame[,"CorValue"])
 
-ggplot() + 
-layer(
-    data = Correlation_DataFrame, mapping = aes(x = Xnum1, y = Y1 ),
-    geom = "line", stat = "identity" , color = "blue") +
-layer(
-    data = Correlation_DataFrame, mapping = aes(x = Xnum2, y = Y2),
-    geom = "line", stat = "identity", method = lm, col = "red") 
+# ggplot() + 
+# layer(
+#     data = Correlation_DataFrame, mapping = aes(x = Xnum1, y = Y1 ),
+#     geom = "line", stat = "identity" , color = "blue") +
+# layer(
+#     data = Correlation_DataFrame, mapping = aes(x = Xnum2, y = Y2),
+#     geom = "line", stat = "identity", method = lm, col = "red") 
 # layer(
 #     data = testoutput, mapping = aes(x = sdb, y = sdc),
 #     geom = "point", stat = "identity", col = "red") + 
