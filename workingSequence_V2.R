@@ -1,7 +1,8 @@
 library(ggplot2)
 ##### Extract Data From Sequence.conf  ###############
 Sequence <- read.table("~/R/Sequential_Regression/Sequence.conf", quote="\"")
-Iterations <- Sequence$V1
+Iterations <- Sequence[1,1]
+CorThreshold <- Sequence[2,1]
 ####### End Veriable Assignment  ###########
 # Global Comments More
 # Set Variables
@@ -15,7 +16,7 @@ z <- c(y[1],y[2],y[3],y[4],y[5])
 boo <- c(1:length(x))
 hoo <- c(1:length(x))
 # set the length of the correlation vector
-corVecLeng = 5
+corVecLeng = Iterations
 counter = 1
 counter2 = 1
 Correlation_DataFrame = as.data.frame(NULL)
@@ -29,21 +30,18 @@ for(i1 in head(boo, -corVecLeng)){
   for(itt in 1:Iterations) {
     p <- c(p,x[i1+itt])
   }
-  # Old Code ## p <- c(x[i1], x[i1+1], x[i1+2], x[i1+3], x[i1+4])
   
-  # cat(counter)
-  cat("   " )
+ #  cat("   " )
    for(i2 in head(hoo, -corVecLeng)){ 
      ######## Convert this line into a loop using Iterations
      q<- c(y[i1])
      for(itt2 in 1:Iterations) {
        q <- c(q,y[i1+itt2])
      }
-     # Old Code ####  q <- c(y[i2], y[i2+1], y[i2+2], y[i2+3], y[i2+4])
      boom <- cor(p,q)
      # cat(boom,"  ", p,"  ", q)
      # cat("   ")
-     if(abs(boom) > .98){
+     if(abs(boom) > CorThreshold){
         tempRow <- c(counter, counter2,p,q,boom)
         Correlation_DataFrame <- rbind(Correlation_DataFrame, tempRow)
         }
@@ -54,23 +52,6 @@ for(i1 in head(boo, -corVecLeng)){
   }
 colnames(Correlation_DataFrame) <- c("Xnum1", "Xnum2","Y1","Y2","Y3","Y4","Y5","Y1A","Y2A","Y3A","Y4A","Y5A","CorValue")
 Correlation_DataFrame
-plot(Correlation_DataFrame[,"CorValue"], type = "l")
-barplot(Correlation_DataFrame[,"CorValue"])
-hist(Correlation_DataFrame[,"CorValue"])
-
-# ggplot() + 
-# layer(
-#     data = Correlation_DataFrame, mapping = aes(x = Xnum1, y = Y1 ),
-#     geom = "line", stat = "identity" , color = "blue") +
-# layer(
-#     data = Correlation_DataFrame, mapping = aes(x = Xnum2, y = Y2),
-#     geom = "line", stat = "identity", method = lm, col = "red") 
-# layer(
-#     data = testoutput, mapping = aes(x = sdb, y = sdc),
-#     geom = "point", stat = "identity", col = "red") + 
-# layer(
-#     data = testoutput, mapping = aes(x = sdb, y = sdc),
-#     geom = "smooth", stat = "smooth", method = lm, col = "red")
-
-
-  
+plot(p, type="b")
+plot(q, type="b")
+abline(lm(p~q))

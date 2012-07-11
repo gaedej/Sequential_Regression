@@ -4,7 +4,8 @@ library("animation")
 library("ggplot2")
 ##### Extract Data From Sequence.conf  ###############
 Sequence <- read.table("~/R/Sequential_Regression/Sequence.conf", quote="\"")
-Iterations <- Sequence$V1
+Iterations <- Sequence[1,1]
+CorThreshold <- Sequence[2,1]
 ####### End Veriable Assignment  ###########
 ########### Next Line Starts HTML Save Function #####
 # saveHTML(
@@ -79,7 +80,6 @@ layer(
 layer(
     data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
     geom = "line", stat = "identity", col = "red")  +
-    # geom_point(Correlation_DataFrame, mapping = aes(x = c(1:54), y = x), size = 2, shape=0 +
 geom_line(aes(x=pulll,y=pushh)) + 
 geom_line(aes(x=pulll4,y=pushh4)) +
 geom_line(aes(x=pulll5,y=pushh5)) +
@@ -92,8 +92,8 @@ geom_line(aes(x=pulll8,y=pushh8))
 # xDistiledy <- c(pulll[2], pulll4[2], pulll5[2], pulll6[2],pulll7[2])
 xDistiledx <- c(pushh[1], pushh4[1], pushh5[1], pushh6[1], pushh7[1])
 xDistiledy <- c(pushh[2], pushh4[2], pushh5[2], pushh6[2],pushh7[2])
-xDistiledxScat <- c(1,pushh[1], 2,  pushh4[1], 3 , pushh5[1],4 , pushh6[1], 5 ,pushh7[1])
-xDistiledyScat <- c(1, pushh[2], 2,  pushh4[2], 3, pushh5[2],4,  pushh6[2], 5, pushh7[2])
+# xDistiledxScat <- c(1,pushh[1], 2,  pushh4[1], 3 , pushh5[1],4 , pushh6[1], 5 ,pushh7[1])
+# xDistiledyScat <- c(1, pushh[2], 2,  pushh4[2], 3, pushh5[2],4,  pushh6[2], 5, pushh7[2])
 DistCombo <- as.data.frame(c(xDistiledx, xDistiledy))
 # colnames(DistCombo) <- c("scatX", "scatY")
 DistCombo1 = as.data.frame(matrix(nrow = 5, ncol = 2))
