@@ -75,7 +75,7 @@ vp <- viewport(width = 0.4, height = 0.4, x = 1,
 mainp <-
 ggplot() + 
 layer(
-    data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = x ),
+    data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = x),
     geom = "line", stat = "identity" , color = "blue") +
 layer(
     data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),

@@ -12,7 +12,7 @@ CorThreshold <- Sequence[2,1]
 # Stock Data Vectors
 y <- LNT1QClose[,1]
 x <- DE1QClose[,1]
-z <- c(y[1],y[2],y[3],y[4],y[5])
+# z <- c(y[1],y[2],y[3],y[4],y[5])
 boo <- c(1:length(x))
 hoo <- c(1:length(x))
 # set the length of the correlation vector
@@ -21,26 +21,18 @@ counter = 1
 counter2 = 1
 Correlation_DataFrame = as.data.frame(NULL)
 # 
-my_correlation = NULL
-
 # Start Nested Loops
 for(i1 in head(boo, -corVecLeng)){
-  ######## Convert this line into a loop using Iterations
   p<- c(x[i1])
   for(itt in 1:Iterations) {
     p <- c(p,x[i1+itt])
   }
-  
- #  cat("   " )
-   for(i2 in head(hoo, -corVecLeng)){ 
-     ######## Convert this line into a loop using Iterations
+    for(i2 in head(hoo, -corVecLeng)){ 
      q<- c(y[i1])
      for(itt2 in 1:Iterations) {
        q <- c(q,y[i1+itt2])
      }
      boom <- cor(p,q)
-     # cat(boom,"  ", p,"  ", q)
-     # cat("   ")
      if(abs(boom) > CorThreshold){
         tempRow <- c(counter, counter2,p,q,boom)
         Correlation_DataFrame <- rbind(Correlation_DataFrame, tempRow)
