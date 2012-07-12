@@ -75,17 +75,19 @@ vp <- viewport(width = 0.4, height = 0.4, x = 1,
 mainp <-
 ggplot() + 
 layer(
-    data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = x),
-    geom = "line", stat = "identity" , color = "blue") +
+#     data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = x),
+      mapping = aes(x = c(1:54), y = x),
+      geom = "line", stat = "identity" , color = "blue") +
 layer(
-    data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
+    # data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
+    mapping = aes(x = c(1:54), y = y),
     geom = "line", stat = "identity", col = "red")  +
 geom_line(aes(x=pulll,y=pushh)) + 
 geom_line(aes(x=pulll4,y=pushh4)) +
 geom_line(aes(x=pulll5,y=pushh5)) +
 geom_line(aes(x=pulll6,y=pushh6)) +
-geom_line(aes(x=pulll7,y=pushh7)) +
-geom_line(aes(x=pulll8,y=pushh8))
+geom_line(aes(x=pulll7,y=pushh7))# +
+# geom_line(aes(x=pulll8,y=pushh8))
 
 ########## Main Focus Data Prep.
 # xDistiledx <- c(pulll[1], pulll4[1], pulll5[1], pulll6[1], pulll7[1])
@@ -121,16 +123,15 @@ mainFocus <- ggplot() +
     layer(
       mapping = aes(x = c(1:5), y= xDistiledy) , geom = "point" , stat = "identity" , color = "black"
         )   # +
-# Getting Closer      c()
-#     layer(
-#     stat_smooth(method="lm")
-#       )
+
 mainFocus + stat_smooth()
 Regres <- ggplot(DistCombo3, aes(x=V1, y=V2)) +
   geom_point(shape=1) +    # Use hollow circles
-  geom_smooth(method=lm)
+  geom_line(mapping = aes(x=c(1:5),y=DistCombo1$V2), colour = "blue") +  
+  geom_line(mapping = aes(x=c(1:5),y=DistCombo2$V2), colour = "red" ) +
+  geom_smooth(method=lm, colour = "orange")
 
-mainpSmall <- qplot(x=c(1:100), colour="lightblue",binwidth=0.8)
+mainpSmall <- qplot(x=c(1:100), colour="light blue",binwidth=0.8)
 subplot3 <- mainpSmall  + geom_line(colour = I("grey"),
                          size = 0.8) 
 
@@ -143,7 +144,7 @@ theme_white()
 
 full_combo <- function() {
   # print(mainp)
-  print(mainFocus)
+  # print(mainFocus)
   print(Regres)
   theme_set(theme_bw(base_size = 8))
   theme_white()
