@@ -16,7 +16,7 @@ lines(y)
 rect(20,85,30,100)
 text(24, 98, "Correlation Value" )
 text(24, 96, Correlation_DataFrame[i,"CorValue"] )
-
+#################### This Section populates took and pook
 xAxisA <- Correlation_DataFrame[,"Xnum1"]
 xAxisB <- Correlation_DataFrame[,"Xnum2"]
 y1 <- Correlation_DataFrame[i,"Y1"]
@@ -32,13 +32,21 @@ y1e2 <- Correlation_DataFrame[i,"Y5A"]
 bb <- as.vector(xAxisA[i])
 cc <- as.vector(xAxisB[i])
 # Linear Regression
+# alphaSeries <- c('a','b','c','d','e','f','g','h','i','j','k')
+# took <- "y1"
+# for(i in c(1:Iterations)){
+#   took <- c(took, paste("y1",alphaSeries[i],sep=""))
+#   print(took)
+# }
+# pook <- "y1a"
+# for(i in c(1:Iterations)){
+#   pook <- c(pook, paste("y1",alphaSeries[i],i,sep=""))
+#   print(pook)
+# }
 took <- c(y1,y1b1,y1c1,y1d1,y1e1)
 pook <- c(y1a,y1b2,y1c2,y1d2,y1e2)
-# took2 <- took/2
-# pook2 <- pook/2
 kook <- lm(took ~ pook)
 abline(kook)
-# text(24, 94, kook )
 #### P0
 pulll <- c(bb,cc)
 pushh <- c(y1,y1a)
@@ -84,12 +92,12 @@ layer(
     # data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
     mapping = aes(x = c(1:54), y = y),
     geom = "line", stat = "identity", col = "red")  +
-geom_line(aes(x=pulll,y=pushh))# + 
-# geom_line(aes(x=pulll4,y=pushh4)) +
-# geom_line(aes(x=pulll5,y=pushh5)) +
-# geom_line(aes(x=pulll6,y=pushh6)) +
-# geom_line(aes(x=pulll7,y=pushh7))# +
-# geom_line(aes(x=pulll8,y=pushh8))
+geom_line(aes(x=pulll,y=pushh)) + 
+geom_line(aes(x=pulll4,y=pushh4)) +
+geom_line(aes(x=pulll5,y=pushh5)) +
+geom_line(aes(x=pulll6,y=pushh6)) +
+geom_line(aes(x=pulll7,y=pushh7))# +
+geom_line(aes(x=pulll8,y=pushh8))
 
 ########## Main Focus Data Prep.
 # xDistiledx <- c(pulll[1], pulll4[1], pulll5[1], pulll6[1], pulll7[1])
