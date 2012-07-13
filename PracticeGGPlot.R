@@ -20,7 +20,7 @@ text(24, 96, Correlation_DataFrame[i,"CorValue"] )
 xAxisA <- Correlation_DataFrame[,"Xnum1"]
 xAxisB <- Correlation_DataFrame[,"Xnum2"]
 
-
+######################## This Where I am working ############
 y1b1 <- Correlation_DataFrame[i,"Y2"]
 y1b2 <- Correlation_DataFrame[i,"Y2A"]
 y1c1 <- Correlation_DataFrame[i,"Y3"]
@@ -37,6 +37,7 @@ took <- "y1"
 y1 <- Correlation_DataFrame[i,"Y1"]
 for(i in c(1:Iterations)){
   tempL1 <- paste("y1",alphaSeries[i],sep="")
+  tempL1 <- c(Correlation_DataFrame[i,i+1])
   took <- c(took, tempL1)
   print(took)
 }
