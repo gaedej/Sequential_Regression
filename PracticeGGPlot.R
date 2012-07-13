@@ -19,8 +19,8 @@ text(24, 96, Correlation_DataFrame[i,"CorValue"] )
 #################### This Section populates took and pook
 xAxisA <- Correlation_DataFrame[,"Xnum1"]
 xAxisB <- Correlation_DataFrame[,"Xnum2"]
-y1 <- Correlation_DataFrame[i,"Y1"]
-y1a <- Correlation_DataFrame[i,"Y1A"]
+
+
 y1b1 <- Correlation_DataFrame[i,"Y2"]
 y1b2 <- Correlation_DataFrame[i,"Y2A"]
 y1c1 <- Correlation_DataFrame[i,"Y3"]
@@ -32,36 +32,39 @@ y1e2 <- Correlation_DataFrame[i,"Y5A"]
 bb <- as.vector(xAxisA[i])
 cc <- as.vector(xAxisB[i])
 # Linear Regression
-# alphaSeries <- c('a','b','c','d','e','f','g','h','i','j','k')
-# took <- "y1"
-# for(i in c(1:Iterations)){
-#   took <- c(took, paste("y1",alphaSeries[i],sep=""))
-#   print(took)
-# }
-# pook <- "y1a"
-# for(i in c(1:Iterations)){
-#   pook <- c(pook, paste("y1",alphaSeries[i],i,sep=""))
-#   print(pook)
-# }
-took <- c(y1,y1b1,y1c1,y1d1,y1e1)
-pook <- c(y1a,y1b2,y1c2,y1d2,y1e2)
+alphaSeries <- c('a','b','c','d','e','f','g','h','i','j','k')
+took <- "y1"
+y1 <- Correlation_DataFrame[i,"Y1"]
+for(i in c(1:Iterations)){
+  tempL1 <- paste("y1",alphaSeries[i],sep="")
+  took <- c(took, tempL1)
+  print(took)
+}
+pook <- "y1a"
+yv1a <- Correlation_DataFrame[i,"Y1A"]
+for(i in c(1:Iterations)){
+  pook <- c(pook, paste("yv1",alphaSeries[i],i,sep=""))
+  print(pook)
+}
+# took <- c(y1,y1b1,y1c1,y1d1,y1e1)
+# pook <- c(yv1a,yv1b2,yv1c2,yv1d2,yv1e2)
 kook <- lm(took ~ pook)
 abline(kook)
 #### P0
 pulll <- c(bb,cc)
-pushh <- c(y1,y1a)
+pushh <- c(y1,yv1a)
 #### P1
 pulll4 <- c(bb+1,cc+1)
-pushh4 <- c(y1b1,y1b2)
+pushh4 <- c(y1b1,yv1b2)
 #### P2
 pulll5 <- c(bb+2,cc+2)
-pushh5 <- c(y1c1,y1c2)
+pushh5 <- c(y1c1,yv1c2)
 #### P3
 pulll6 <- c(bb+3,cc+3)
-pushh6 <- c(y1d1,y1d2)
+pushh6 <- c(y1d1,yv1d2)
 #### P4
 pulll7 <- c(bb+4,cc+4)
-pushh7 <- c(y1e1,y1e2)
+pushh7 <- c(y1e1,yv1e2)
 # Lines are probably redundant. Commenting out for the time being.
 # lines(pulll,pushh, col="red")
 # lines(pulll4, pushh4, col="red")
