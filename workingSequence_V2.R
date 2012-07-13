@@ -21,12 +21,13 @@ for(i1 in head(boo, -corVecLeng)){
   p<- c(x[i1])
   for(itt in 1:Iterations) {
     p <- c(p,x[i1+itt])
+    
   }
     for(i2 in head(hoo, -corVecLeng)){ 
-     q<- c(y[i1])
+     q<- c(y[i2])
      for(itt2 in 1:Iterations) {
-       q <- c(q,y[i1+itt2])
-     }
+       q <- c(q,y[i2+itt2])
+    }
      boom <- cor(p,q)
      if(abs(boom) > CorThreshold){
         tempRow <- c(counter, counter2,p,q,boom)
