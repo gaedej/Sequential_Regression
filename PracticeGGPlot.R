@@ -68,6 +68,8 @@ polygon(c(pulll6,rev(pulll7)), c(pushh6,rev(pushh7)), col="blue", border="red")
 }
 # , img.name = "Correlation_Sequence", ani.height = 600, ani.width = 1000)
 ########### Previous Line Ends HTML Save Function ####
+#################################
+#################################
 ###############  New ggplot2 section #####
 vp <- viewport(width = 0.4, height = 0.4, x = 1,
     y = unit(0.7, "lines"), just = c("right","bottom"))
@@ -82,11 +84,11 @@ layer(
     # data = Correlation_DataFrame, mapping = aes(x = c(1:54), y = y),
     mapping = aes(x = c(1:54), y = y),
     geom = "line", stat = "identity", col = "red")  +
-geom_line(aes(x=pulll,y=pushh)) + 
-geom_line(aes(x=pulll4,y=pushh4)) +
-geom_line(aes(x=pulll5,y=pushh5)) +
-geom_line(aes(x=pulll6,y=pushh6)) +
-geom_line(aes(x=pulll7,y=pushh7))# +
+geom_line(aes(x=pulll,y=pushh))# + 
+# geom_line(aes(x=pulll4,y=pushh4)) +
+# geom_line(aes(x=pulll5,y=pushh5)) +
+# geom_line(aes(x=pulll6,y=pushh6)) +
+# geom_line(aes(x=pulll7,y=pushh7))# +
 # geom_line(aes(x=pulll8,y=pushh8))
 
 ########## Main Focus Data Prep.
