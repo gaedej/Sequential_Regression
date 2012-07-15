@@ -1,4 +1,5 @@
 library(ggplot2)
+source("workingSequence_data_Load.R")
 ##### Extract Data From Sequence.conf  ###############
 Sequence <- read.table("~/R/Sequential_Regression/Sequence.conf", quote="\"")
 Iterations <- Sequence[1,1]

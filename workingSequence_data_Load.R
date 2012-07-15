@@ -4,3 +4,4 @@ DEquarteryrClose <- DE1yrClose$V1[200:253]
 LNTquarteryrClose <- LNT1yrClose$V1[200:253]
 LNT1QClose <- as.data.frame(LNTquarteryrClose)
 DE1QClose <- as.data.frame(DEquarteryrClose)
+

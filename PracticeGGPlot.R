@@ -2,6 +2,7 @@ library("grid")
 library("scales")
 library("animation")
 library("ggplot2")
+LIt = 1
 ##### Extract Data From Sequence.conf  ###############
 Sequence <- read.table("~/R/Sequential_Regression/Sequence.conf", quote="\"")
 Iterations <- Sequence[1,1]
@@ -33,20 +34,33 @@ bb <- as.vector(xAxisA[i])
 cc <- as.vector(xAxisB[i])
 # Linear Regression
 alphaSeries <- c('a','b','c','d','e','f','g','h','i','j','k')
-took <- "y1"
+took <- NULL
+tempL1 <- NULL
+LIterations <- (c(1:Iterations))+2
 y1 <- Correlation_DataFrame[i,"Y1"]
-for(i in c(1:Iterations)){
+Nr <- nrow(Correlation_DataFrame)
+
+# while(LIt <= Nr){
+  for(i in LIterations){
   tempL1 <- paste("y1",alphaSeries[i],sep="")
-  tempL1 <- c(Correlation_DataFrame[i,i+1])
+  tempL1 <- c(Correlation_DataFrame[LIt,i]) # removed i+1
   took <- c(took, tempL1)
-  print(took)
+  
 }
-pook <- "y1a"
+  took <- c(took, tempL1)
+print(took)
+
+# }
+pook <- NULL
 yv1a <- Correlation_DataFrame[i,"Y1A"]
-for(i in c(1:Iterations)){
-  pook <- c(pook, paste("yv1",alphaSeries[i],i,sep=""))
-  print(pook)
+for(i in c((length(Correlation_DataFrame)-(length(LIterations)+1)):(length(Correlation_DataFrame)-1))){
+  tempL2 <- paste("y2",alphaSeries[i],Nr,sep="")
+  tempL2 <- c(Correlation_DataFrame[LIt,i]) # removed i+1
+  pook <- c(pook, tempL2)
+  # pook <- c(pook, paste("yv1",alphaSeries[i],i,sep=""))
 }
+print(pook)
+LIt = LIt + 1
 # took <- c(y1,y1b1,y1c1,y1d1,y1e1)
 # pook <- c(yv1a,yv1b2,yv1c2,yv1d2,yv1e2)
 kook <- lm(took ~ pook)
