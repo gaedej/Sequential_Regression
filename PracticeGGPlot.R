@@ -120,17 +120,20 @@ geom_line(aes(x=pulll8,y=pushh8))
 ########## Main Focus Data Prep.
 # xDistiledx <- c(pulll[1], pulll4[1], pulll5[1], pulll6[1], pulll7[1])
 # xDistiledy <- c(pulll[2], pulll4[2], pulll5[2], pulll6[2],pulll7[2])
-xDistiledx <- c(pushh[1], pushh4[1], pushh5[1], pushh6[1], pushh7[1])
-xDistiledy <- c(pushh[2], pushh4[2], pushh5[2], pushh6[2],pushh7[2])
+# xDistiledx <- c(pushh[1], pushh4[1], pushh5[1], pushh6[1], pushh7[1])
+# xDistiledy <- c(pushh[2], pushh4[2], pushh5[2], pushh6[2],pushh7[2])
+xDistiledx <- took
+xDistiledy <- pook
+
 # xDistiledxScat <- c(1,pushh[1], 2,  pushh4[1], 3 , pushh5[1],4 , pushh6[1], 5 ,pushh7[1])
 # xDistiledyScat <- c(1, pushh[2], 2,  pushh4[2], 3, pushh5[2],4,  pushh6[2], 5, pushh7[2])
 DistCombo <- as.data.frame(c(xDistiledx, xDistiledy))
 # colnames(DistCombo) <- c("scatX", "scatY")
 DistCombo1 = as.data.frame(matrix(nrow = 5, ncol = 2))
-DistCombo1[1] <- as.data.frame(c(1:5))
+DistCombo1[1] <- as.data.frame(c(1:length(pook)))
 DistCombo1[2] <- as.data.frame(xDistiledx)
 DistCombo2 = as.data.frame(matrix(nrow = 5, ncol = 2))
-DistCombo2[1] <- as.data.frame(c(1:5))
+DistCombo2[1] <- as.data.frame(c(1:length(took)))
 DistCombo2[2] <- as.data.frame(xDistiledy)
 DistCombo3 <- rbind(DistCombo1,DistCombo2)
 c <- ggplot(DistCombo3 , aes(V1, V2))
@@ -140,23 +143,23 @@ yDistiled <- c(pushh, pushh4, pushh5, pushh6, pushh7)
 ############## Snippet from Book ############  c + stat_smooth(method = "lm") + geom_point()
 mainFocus <- ggplot() +
   layer(
-    mapping = aes(x = c(1:5) , y = xDistiledx), geom = "line", stat = "identity" , color = "blue"
+    mapping = aes(x = c(1:len(took)) , y = xDistiledx), geom = "line", stat = "identity" , color = "blue"
     )  + 
   layer(
-    mapping = aes(x = c(1:5) , y = xDistiledx), geom = "point", stat = "identity" , color = "black"
+    mapping = aes(x = c(1:len(took)) , y = xDistiledx), geom = "point", stat = "identity" , color = "black"
       ) + 
   layer(
-      mapping = aes(x = c(1:5), y= xDistiledy) , geom = "line" , stat = "identity" , color = "red"
+      mapping = aes(x = c(1:len(took)), y= xDistiledy) , geom = "line" , stat = "identity" , color = "red"
       ) +
     layer(
-      mapping = aes(x = c(1:5), y= xDistiledy) , geom = "point" , stat = "identity" , color = "black"
+      mapping = aes(x = c(1:len(took)), y= xDistiledy) , geom = "point" , stat = "identity" , color = "black"
         )   # +
 
 mainFocus + stat_smooth()
 Regres <- ggplot(DistCombo3, aes(x=V1, y=V2)) +
   geom_point(shape=1) +    # Use hollow circles
-  geom_line(mapping = aes(x=c(1:5),y=DistCombo1$V2), colour = "blue") +  
-  geom_line(mapping = aes(x=c(1:5),y=DistCombo2$V2), colour = "red" ) +
+  geom_line(mapping = aes(x=(length(took)),y=DistCombo1$V2), colour = "blue") +  
+  geom_line(mapping = aes(x=(length(took)),y=DistCombo2$V2), colour = "red" ) +
   geom_smooth(method=lm, colour = "orange")
 
 mainpSmall <- qplot(x=c(1:100), colour="light blue",binwidth=0.8)
